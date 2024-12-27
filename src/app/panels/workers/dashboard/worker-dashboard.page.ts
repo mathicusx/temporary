@@ -6,10 +6,9 @@ import {
 } from '../charts/charts.data';
 
 @Component({
-    selector: 'app-worker-dashboard',
-    templateUrl: './worker-dashboard.page.html',
-    styleUrls: ['./worker-dashboard.page.scss'],
-    standalone: false
+  selector: 'app-worker-dashboard',
+  templateUrl: './worker-dashboard.page.html',
+  styleUrls: ['./worker-dashboard.page.scss'],
 })
 export class WorkerDashboardPage implements OnInit {
   stackedVerticalCharHours: any[] = [];

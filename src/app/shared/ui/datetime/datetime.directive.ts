@@ -38,9 +38,8 @@ export interface MonthsChange {
 const _DatetimeDirectiveBaseMixin = mixinCanBeDestroyed(class {});
 
 @Directive({
-    selector: 'ion-datetime[appUiDatetime]',
-    exportAs: 'appUiDatetime',
-    standalone: false
+  selector: 'ion-datetime[appUiDatetime]',
+  exportAs: 'appUiDatetime',
 })
 export class DatetimeDirective
   extends _DatetimeDirectiveBaseMixin

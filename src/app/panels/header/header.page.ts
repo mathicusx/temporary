@@ -4,10 +4,9 @@ import { MenuController } from '@ionic/angular';
 import { filter } from 'rxjs';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.page.html',
-    styleUrls: ['./header.page.scss'],
-    standalone: false
+  selector: 'app-header',
+  templateUrl: './header.page.html',
+  styleUrls: ['./header.page.scss'],
 })
 export class HeaderPage implements OnInit {
   public pageTitle: string = '';
