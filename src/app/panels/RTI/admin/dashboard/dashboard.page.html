@@ -1,0 +1,192 @@
+<div class="dashboard-container">
+  <div class="dashboard-reports">
+    <div class="dashboard-report">
+      <div class="report">
+        <i class="pi pi-users"></i>
+        <div>Total Active Workers</div>
+      </div>
+      <div class="report-earnings">
+        <div class="earnings">15,698</div>
+        <div class="report-gain">
+          <div>From last week</div>
+          <ion-icon color="danger" style="font-size: 2rem;" name="trending-down"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-report">
+      <div class="report">
+        <i class="pi pi-clock"></i>
+        <div>Average Hours</div>
+      </div>
+      <div class="report-earnings">
+        <div class="earnings">34.5</div>
+        <div class="report-gain">
+          <div>From last week</div>
+          <ion-icon style="font-size: 2rem;" color="primary" name="trending-up"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-report">
+      <div class="report">
+        <i class="pi pi-chart-line"></i>
+        <div>Previous Week Savings</div>
+      </div>
+      <div class="report-earnings">
+        <div class="earnings">£11,589</div>
+        <div class="report-gain">
+          <div>From last week</div>
+          <ion-icon color="danger" style="font-size: 2rem;" name="trending-down"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-report">
+      <div class="report">
+        <i class="pi pi-chart-line"></i>
+        <div>Cumulative Savings</div>
+      </div>
+      <div class="report-earnings">
+        <div class="earnings">£115,589</div>
+        <!-- <div class="report-gain">
+          <i class="pi pi-arrow-down" style="color: red"></i>
+          <div>From last week</div>
+        </div> -->
+      </div>
+    </div>
+    <div class="dashboard-report">
+      <div class="report">
+        <i class="pi pi-clock"></i>
+        <div>Previous Week Invoiced Hours</div>
+      </div>
+      <div class="report-earnings">
+        <div class="earnings">1,575,524</div>
+        <div class="report-gain">
+          <div>From last week</div>
+          <ion-icon style="font-size: 2rem;" color="primary" name="trending-up"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-report">
+      <div class="report">
+        <i class="pi pi-clock"></i>
+        <div>Cumulative Invoiced Hours</div>
+      </div>
+      <div class="report-earnings">
+        <div class="earnings">21,575,524</div>
+        <!-- <div class="report-gain">
+          <i class="pi pi-arrow-down" style="color: red"></i>
+          <div>From last week</div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="report-view">
+    <div class="actions">
+      <label for="buttondisplay" class="font-bold block mb-2">
+        Report View
+      </label>
+      <ion-item>
+        <ion-select [(ngModel)]="selectedCity" interface="popover">
+          <ng-container *ngFor="let group of groupedCities">
+            <ion-select-option disabled>{{ group.label }}</ion-select-option>
+
+            <ion-select-option
+              *ngFor="let item of group.items"
+              [value]="item.value"
+            >
+              {{ item.label }}
+            </ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div class="actions">
+      <label for="buttondisplay" class="font-bold block mb-2">
+        Report View
+      </label>
+      <ion-item class="w-full min-w-[150px]" #startDateTrigger>
+        <ion-input #startDateInput></ion-input>
+        <ion-icon class="cursor-pointer" name="calendar" slot="end"></ion-icon>
+      </ion-item>
+      <app-ui-datetime-popover
+        enableRange
+        multiple
+        [datetimePopoverTriggerFor]="startDateTrigger"
+        [datetimeValueBind]="startDateInput"
+      >
+      </app-ui-datetime-popover>
+    </div>
+  </div>
+  <div class="report-charts">
+    <div class="report-chart">
+      <ngx-charts-area-chart
+        [view]="[710, 300]"
+        [scheme]="colorScheme"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [timeline]="timeline"
+        [gradient]="gradient"
+        [results]="multi"
+      >
+      </ngx-charts-area-chart>
+      <label for="buttondisplay" class="font-bold block mb-2"> Report 1 </label>
+    </div>
+    <div class="report-chart">
+      <ngx-charts-bar-horizontal
+      [view]="[450, 300]"
+      [scheme]="colorScheme"
+      [results]="single"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabelCapita"
+      [yAxisLabel]="yAxisLabelCapita"
+      >
+      </ngx-charts-bar-horizontal>
+      <label for="buttondisplay" class="font-bold block mb-2"> Report 2 </label>
+    </div>
+    <div class="report-chart">
+      <ngx-charts-pie-chart
+        [view]="[367, 300]"
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        [arcWidth]="2"
+        [doughnut]="isDoughnut"
+        [explodeSlices]="true"
+      >
+      </ngx-charts-pie-chart>
+      <label for="buttondisplay" class="font-bold block mb-2"> Report 3 </label>
+    </div>
+    <div class="report-chart">
+      <ngx-charts-line-chart
+        [view]="[450, 300]"
+        [scheme]="colorScheme"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [timeline]="timeline"
+        [results]="multiLine"
+      >
+      </ngx-charts-line-chart>
+      <label for="buttondisplay" class="font-bold block mb-2"> Report 4 </label>
+    </div>
+    <div class="report-chart">
+      <ngx-charts-number-card
+        [view]="[300, 300]"
+        [scheme]="colorScheme"
+        [results]="singleNumberChart"
+        [cardColor]="cardColor"
+      >
+      </ngx-charts-number-card>
+      <label for="buttondisplay" class="font-bold block mb-2"> Report 5 </label>
+    </div>
+  </div>
+</div>

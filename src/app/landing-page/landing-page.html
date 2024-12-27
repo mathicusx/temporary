@@ -1,0 +1,101 @@
+<div class="body-container">
+  <div class="actions">
+    <ion-button
+      severity="secondary"
+      color="tertiary"
+      label="Login"
+      [routerLink]="['/authentication/login']"
+      routerLinkActive="router-link-active"
+      >Login</ion-button
+    >
+    <ion-button color="tertiary">Contact Us</ion-button>
+  </div>
+  <div class="container">
+    <div>
+      <h1>Tech.Co</h1>
+      <h1 style="color: #303e6f">Real Time Invoicing</h1>
+      <h4>
+        Lorem ipsum dolor sit amet, integre reformidans qui id. Nibh mutat
+        sensibus qui ea, eu mea graece detracto expetenda. Epicurei rationibus
+        eam no, munere mandamus te eam, et mediocrem assentior pri. Ad eros
+        dicam vulputate vim, et denique similique vis. In vivendo eloquentiam
+        qui, et usu integre oportere, elit detraxit ne vix.
+      </h4>
+    </div>
+    <div class="charts-container">
+      <div>
+        <ul>
+          <li><span> Lorem ipsum dolor sit </span></li>
+          <li><span> Epicurei rationibus eam no </span></li>
+          <li><span> Epicurei rationibus eam </span></li>
+          <li><span> Lorem ipsum dolor sit </span></li>
+          <li><span> Epicurei rationibus eam </span></li>
+          <li><span> Lorem ipsum dolor sit </span></li>
+        </ul>
+      </div>
+      <ngx-charts-pie-chart
+        [view]="[500, 300]"
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        [arcWidth]="2"
+        [labels]="showLabels"
+        [legendPosition]="legendPosition"
+        [legend]="showLegend"
+        [doughnut]="isDoughnut"
+        [explodeSlices]="true"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+  </div>
+  <div class="footer-container">
+    <div class="text-container">
+      <div class="bubble">
+        <div class="bubble-text">1</div>
+      </div>
+      <div class="footer-messages">
+        <h2 class="title">Who</h2>
+        <div class="text">
+          Lorem ipsum dolor sit amet, integre reformidans qui id. Nibh mutat
+          sensibus qui ea, eu mea graece detracto expetenda. Epicurei rationibus
+          eam no, munere mandamus te eam, et mediocrem assentior pri. Ad eros
+          dicam vulputate vim, et denique similique vis. In vivendo eloquentiam
+          qui, et usu integre oportere, elit detraxit ne vix.
+        </div>
+      </div>
+    </div>
+    <div class="text-container">
+      <div class="bubble">
+        <div class="bubble-text">2</div>
+      </div>
+      <div class="footer-messages">
+        <h2 class="title">Why</h2>
+        <div class="text">
+          Lorem ipsum dolor sit amet, integre reformidans qui id. Nibh mutat
+          sensibus qui ea, eu mea graece detracto expetenda. Epicurei rationibus
+          eam no, munere mandamus te eam, et mediocrem assentior pri. Ad eros
+          dicam vulputate vim, et denique similique vis. In vivendo eloquentiam
+          qui, et usu integre oportere, elit detraxit ne vix.
+        </div>
+      </div>
+    </div>
+    <div class="text-container">
+      <div class="bubble">
+        <div class="bubble-text">3</div>
+      </div>
+      <div class="footer-messages">
+        <h2 class="title">Where</h2>
+        <div class="text">
+          Lorem ipsum dolor sit amet, integre reformidans qui id. Nibh mutat
+          sensibus qui ea, eu mea graece detracto expetenda. Epicurei rationibus
+          eam no, munere mandamus te eam, et mediocrem assentior pri. Ad eros
+          dicam vulputate vim, et denique similique vis. In vivendo eloquentiam
+          qui, et usu integre oportere, elit detraxit ne vix.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="dashboard-container p-4">
+  <div class="charts-container">
+    <div class="chart">
+      <ngx-charts-bar-vertical-stacked
+        [view]="[350, 350]"
+        [showDataLabel]="true"
+        [tooltipDisabled]="true"
+        [scheme]="colorScheme"
+        [results]="stackedVerticalCharHours"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showYAxisLabel]="showYAxisLabel"
+        [yAxisLabel]="yAxisLabelHours"
+        [legend]="false"
+        to
+      ></ngx-charts-bar-vertical-stacked>
+    </div>
+    <div class="chart">
+      <ngx-charts-bar-horizontal-stacked
+        [view]="[350, 350]"
+        [scheme]="colorScheme"
+        [showDataLabel]="true"
+        [tooltipDisabled]="true"
+        [results]="stackedVerticalChartPay"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [showYAxisLabel]="showYAxisLabel"
+        [showXAxisLabel]="showXAxisLabel"
+        [yAxisLabel]="yAxisLabelPay"
+        [xAxisLabel]="xAxisLabelPay"
+        [legend]="false"
+      ></ngx-charts-bar-horizontal-stacked>
+    </div>
+  </div>
+</div>

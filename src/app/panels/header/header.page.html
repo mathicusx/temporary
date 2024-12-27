@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar class="header-content" color="secondary">
+    <div class="justify-between items-center lg:justify-end flex">
+      <div>
+        <ion-menu-button color="light"></ion-menu-button>
+      </div>
+      <div class="header-container">
+        <ion-title size="" color="light">{{pageTitle}}</ion-title>
+      </div>
+      <div class="icon-badge-container mr-4 lg:mr-6">
+        <ion-icon
+          id="click-trigger"
+          class="cursor-pointer"
+          aria-label="Notifications"
+          name="notifications"
+          style="font-size: 1.7rem"
+        ></ion-icon>
+        <ion-badge color="danger" class="notification-badge">5</ion-badge>
+        <ion-popover trigger="click-trigger" triggerAction="click">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <ion-list>
+                <ion-item>
+                  <ion-label>Notification 1</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Notification 2</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Notification 3</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Notification 4</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Notification 5</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>

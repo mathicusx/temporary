@@ -1,0 +1,14 @@
+.accordions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+ion-accordion {
+  background-color: #ededed;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+.accordion-info {
+  display: flex;
+  gap: 0.5rem;
+}

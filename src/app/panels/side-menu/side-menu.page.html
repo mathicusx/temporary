@@ -1,0 +1,50 @@
+<ion-content color="primary">
+  <div class="side-menu">
+    <div class="side-menu-header">
+      <h1 class="side-menu-title" style="font-size: 3em">Tech.Co</h1>
+      <div class="employee-container">
+        <div class="avatar-container">
+          <div class="employee-bubble">
+            <i class="pi pi-user" style="font-size: 2.5rem; color: black"></i>
+          </div>
+        </div>
+        <div class="employee-title">Employee Name</div>
+      </div>
+    </div>
+    <ion-list [inset]="true" class="nav-items">
+      <ion-item
+        class="nav-item"
+        [routerLink]="['/panels/rti/dashboard']"
+        routerLinkActive="active"
+      >
+        <ion-icon name="home"></ion-icon>
+        <ion-label color="light">Dashboard</ion-label>
+      </ion-item>
+      <ion-item
+        class="nav-item"
+        [routerLink]="['/panels/rti/company']"
+        routerLinkActive="active"
+      >
+        <ion-icon name="business"></ion-icon>
+        <ion-label color="light">Company</ion-label>
+      </ion-item>
+      <ion-item
+        class="nav-item"
+        [routerLink]="['/panels/rti/HR']"
+        routerLinkActive="active"
+      >
+        <ion-icon name="people-circle"></ion-icon>
+        <ion-label color="light">HR</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="nav-item"
+        [routerLink]="['/panels/rti/admin']"
+        routerLinkActive="active"
+      >
+        <ion-icon name="briefcase"></ion-icon>
+        <ion-label color="light">Admin</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-popover
+  #datetimePopover
+  class="app-ui-datetime-popover"
+  [keepContentsMounted]="true"
+  [keyboardClose]="false"
+  [dismissOnSelect]="false"
+  [arrow]="false"
+  alignment="start"
+>
+  <ng-template>
+    <div class="app-ui-datetime-popover-wrapper">
+      <ion-datetime
+        #ionDatetime
+        #datetime="appUiDatetime"
+        appUiDatetime
+        [enableRange]="enableRange"
+        [presentation]="presentation"
+        [hourCycle]="hourCycle"
+        [(ngModel)]="value"
+        [min]="min"
+        [max]="max"
+        (ionChange)="dismissPopover()"
+        [multiple]="multiple"
+      >
+        <ion-buttons slot="buttons" *ngIf="enableActionButtons">
+          <ion-button color="danger" (click)="reset()">Reset</ion-button>
+          <ion-button color="primary" (click)="cancel()">Cancel</ion-button>
+          <ion-button color="primary" (click)="confirm()">Apply</ion-button>
+        </ion-buttons>
+      </ion-datetime>
+    </div>
+  </ng-template>
+</ion-popover>

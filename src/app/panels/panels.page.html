@@ -1,0 +1,14 @@
+<ion-split-pane when="lg" contentId="main">
+  <ion-menu contentId="main">
+    <ion-content>
+      <app-side-menu></app-side-menu>
+    </ion-content>
+  </ion-menu>
+
+  <div class="ion-page" id="main">
+    <app-header></app-header>
+    <ion-content class="main-content ion-padding">
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </div>
+</ion-split-pane>
