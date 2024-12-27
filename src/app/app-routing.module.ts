@@ -1,22 +1,44 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthPage } from './auth/auth.page';
+import { LoginPage } from './auth/login/login.page';
+import { LandingPage } from './landing-page/landing-page';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: 'landing',
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    path: 'authentication/login',
+    component: AuthPage,
+    // children: [
+    //   {
+    //     path: 'login',
+    //     component: LoginPage,
+    //     // canActivate: [SingleSignOnGuard, IsSignedInGuard],
+    //   },
+    // ],
+  },
+  {
+    path: 'panels',
+    loadChildren: () =>
+      import(`../app/panels/panels.module`).then((a) => a.PanelsModule),
+    // canActivate: [AuthGuard, AccessGuard],
+  },
+  {
+    path: 'landing',
+    component: LandingPage,
+  },
+
+  { path: '**', redirectTo: 'landing' },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
