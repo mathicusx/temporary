@@ -3,9 +3,10 @@ import { Color, LegendPosition, ScaleType } from '@swimlane/ngx-charts';
 import { multi, single, multiLine, singleNumberChart } from './dashboard.data';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrl: './dashboard.page.scss',
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.page.html',
+    styleUrl: './dashboard.page.scss',
+    standalone: false
 })
 export class DashboardPage implements OnInit {
   groupedCities: any[] = [];

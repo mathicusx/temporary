@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-ni-rates',
-  templateUrl: './ni-rates.page.html',
-  styleUrls: ['./ni-rates.page.scss'],
+    selector: 'app-ni-rates',
+    templateUrl: './ni-rates.page.html',
+    styleUrls: ['./ni-rates.page.scss'],
+    standalone: false
 })
 export class NiRatesPage implements OnInit {
 

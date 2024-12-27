@@ -21,9 +21,10 @@ let uniqId = 0;
 
 const _DatetimePopoverBaseMixin = mixinCanBeDestroyed(class {});
 @Component({
-  selector: 'app-ui-datetime-popover',
-  templateUrl: './datetime-popover.component.html',
-  styleUrls: ['./datetime-popover.component.scss'],
+    selector: 'app-ui-datetime-popover',
+    templateUrl: './datetime-popover.component.html',
+    styleUrls: ['./datetime-popover.component.scss'],
+    standalone: false
 })
 export class DatetimePopoverComponent
   extends _DatetimePopoverBaseMixin

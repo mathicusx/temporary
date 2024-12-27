@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-formats',
-  templateUrl: './formats.page.html',
-  styleUrls: ['./formats.page.scss'],
+    selector: 'app-formats',
+    templateUrl: './formats.page.html',
+    styleUrls: ['./formats.page.scss'],
+    standalone: false
 })
 export class FormatsPage implements OnInit {
 

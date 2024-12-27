@@ -36,11 +36,10 @@ interface EventItem {
 }
 
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.html',
-  styleUrl: './landing-page.scss',
-  standalone: true,
-  imports: [NgxChartsModule, RouterModule, IonicModule],
+    selector: 'app-landing-page',
+    templateUrl: './landing-page.html',
+    styleUrl: './landing-page.scss',
+    imports: [NgxChartsModule, RouterModule, IonicModule]
 })
 export class LandingPage {
   title = 'TechCo-RTI';
