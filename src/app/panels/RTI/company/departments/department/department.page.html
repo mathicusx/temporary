@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title
+      >{{department ? 'Update Department' : 'Create Department'}}</ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="p-4 h-full edit-department-container">
+  <form
+    [formGroup]="editDepartmentForm"
+    class="edit-form"
+    (ngSubmit)="onEdit()"
+  >
+    <ion-input
+      class="form-input"
+      formControlName="name"
+      placeholder="Name"
+    ></ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editDepartmentForm.get('name')?.touched && editDepartmentForm.get('name')?.invalid"
+    >
+      <p *ngIf="editDepartmentForm.get('name')?.hasError('required')">
+        Name is required.
+      </p>
+    </div>
+
+    <div class="flex flex-col">
+      <ion-button class="form-button" color="tertiary" (click)="onEdit()"
+        >{{department ? 'Update Department' : 'Create Department'}}</ion-button
+      >
+    </div>
+  </form>
+</div>

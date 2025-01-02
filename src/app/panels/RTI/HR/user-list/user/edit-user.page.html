@@ -1,14 +1,76 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>mobile-view</ion-title>
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>{{user ? 'Update User' : 'Create User'}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">Close</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mobile-view</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content> -->
-<span>edit works!</span>
+<div class="p-4 h-full edit-user-container">
+  <form [formGroup]="editUserForm" class="edit-form" (ngSubmit)="onEdit()">
+    <ion-input
+      class="form-input"
+      formControlName="name"
+      placeholder="Name"
+    ></ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editUserForm.get('name')?.touched && editUserForm.get('name')?.invalid"
+    >
+      <p *ngIf="editUserForm.get('name')?.hasError('required')">
+        Name is required.
+      </p>
+      <p *ngIf="editUserForm.get('name')?.hasError('minlength')">
+        Name must be at least 3 characters long.
+      </p>
+    </div>
+    <ion-input class="form-input" formControlName="email" placeholder="Email">
+    </ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editUserForm.get('email')?.touched && editUserForm.get('email')?.invalid"
+    >
+      <p *ngIf="editUserForm.get('email')?.hasError('required')">
+        Email is required.
+      </p>
+      <p *ngIf="editUserForm.get('email')?.hasError('minlength')">
+        Email must be at least 3 characters long.
+      </p>
+    </div>
+    <ion-input
+      class="form-input"
+      formControlName="company"
+      placeholder="Company"
+    >
+    </ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editUserForm.get('company')?.touched && editUserForm.get('company')?.invalid"
+    >
+      <p *ngIf="editUserForm.get('company')?.hasError('required')">
+        Company is required.
+      </p>
+      <p *ngIf="editUserForm.get('company')?.hasError('minlength')">
+        Company must be at least 3 characters long.
+      </p>
+    </div>
+    <ion-input class="form-input" formControlName="roles" placeholder="Roles">
+    </ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editUserForm.get('roles')?.touched && editUserForm.get('roles')?.invalid"
+    >
+      <p *ngIf="editUserForm.get('roles')?.hasError('required')">
+        Roles is required.
+      </p>
+      <p *ngIf="editUserForm.get('roles')?.hasError('minlength')">
+        Roles must be at least 3 characters long.
+      </p>
+    </div>
+    <div class="flex flex-col">
+      <ion-button class="form-button" color="tertiary" (click)="onEdit()"
+        >{{user ? 'Update User' : 'Create User'}}</ion-button
+      >
+    </div>
+  </form>
+</div>

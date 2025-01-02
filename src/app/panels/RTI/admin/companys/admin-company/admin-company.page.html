@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>{{company ? 'Update Company' : 'Create Company'}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="p-4 h-full edit-company-container">
+  <form [formGroup]="editCompanyForm" class="edit-form" (ngSubmit)="onEdit()">
+    <ion-input
+      class="form-input"
+      formControlName="name"
+      placeholder="Name"
+    ></ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editCompanyForm.get('name')?.touched && editCompanyForm.get('name')?.invalid"
+    >
+      <p *ngIf="editCompanyForm.get('name')?.hasError('required')">
+        Name is required.
+      </p>
+    </div>
+
+    <div class="flex flex-col">
+      <ion-button class="form-button" color="tertiary" (click)="onEdit()"
+        >{{company ? 'Update Company' : 'Create Company'}}</ion-button
+      >
+    </div>
+  </form>
+</div>

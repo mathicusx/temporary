@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CompanyPage } from './company.page';
-import { RegionPage } from './region/region.page';
-import { SitePage } from './site/site.page';
-import { DepartmentPage } from './department/department.page';
-import { RolePage } from './role/role.page';
+import { RegionsPage } from './regions/regions.page';
+import { SitesPage } from './sites/sites.page';
+import { DepartmentsPage } from './departments/departments.page';
+import { RolesPage } from './roles/roles.page';
 
 const routes: Routes = [
   {
@@ -13,19 +13,19 @@ const routes: Routes = [
     children: [
       {
         path: 'region',
-        component: RegionPage,
+        component: RegionsPage,
       },
       {
         path: 'site',
-        component: SitePage,
+        component: SitesPage,
       },
       {
         path: 'department',
-        component: DepartmentPage,
+        component: DepartmentsPage,
       },
       {
         path: 'role',
-        component: RolePage,
+        component: RolesPage,
       },
     ],
   },

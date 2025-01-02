@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>{{format ? 'Update Format' : 'Create Format'}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="p-4 h-full edit-format-container">
+  <form [formGroup]="editFormatForm" class="edit-form" (ngSubmit)="onEdit()">
+    <ion-input
+      class="form-input"
+      formControlName="name"
+      placeholder="Name"
+    ></ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editFormatForm.get('name')?.touched && editFormatForm.get('name')?.invalid"
+    >
+      <p *ngIf="editFormatForm.get('name')?.hasError('required')">
+        Name is required.
+      </p>
+    </div>
+    <ion-input class="form-input" formControlName="formatDetails" placeholder="Format Details">
+    </ion-input>
+    <div
+      class="error-wrapper"
+      *ngIf="editFormatForm.get('formatDetails')?.touched && editFormatForm.get('formatDetails')?.invalid"
+    >
+      <p *ngIf="editFormatForm.get('formatDetails')?.hasError('required')">
+        Format Details is required.
+      </p>
+    </div>
+
+    <div class="flex flex-col">
+      <ion-button class="form-button" color="tertiary" (click)="onEdit()"
+        >{{format ? 'Update Format' : 'Create Format'}}</ion-button
+      >
+    </div>
+  </form>
+</div>

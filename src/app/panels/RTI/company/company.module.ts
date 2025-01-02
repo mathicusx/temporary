@@ -6,14 +6,38 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { UiModule } from 'src/app/shared/ui/ui.module';
 import { CompanyRoutingModule } from './company-routing.module';
 import { RouterModule } from '@angular/router';
-import { SitePage } from './site/site.page';
-import { RegionPage } from './region/region.page';
-import { DepartmentPage } from './department/department.page';
-import { RolePage } from './role/role.page';
+
 import { CompanyPage } from './company.page';
+import { SitesPage } from './sites/sites.page';
+import { SiteActionCellRendererComponent } from './sites/siteActionCellRenderComponent';
+import { DepartmentsPage } from './departments/departments.page';
+import { EditDepartmentPage } from './departments/department/department.page';
+import { DepartmentActionCellRendererComponent } from './departments/departmentActionCellRenderComponent';
+import { RegionsPage } from './regions/regions.page';
+import { EditRegionPage } from './regions/region/region.page';
+import { RegionActionCellRendererComponent } from './regions/regionActionCellRenderComponent';
+import { RolesPage } from './roles/roles.page';
+import { EditRolePage } from './roles/role/role.page';
+import { RoleActionCellRendererComponent } from './roles/roleActionCellRenderComponent';
+import { AgGridModule } from 'ag-grid-angular';
+import { EditSitePage } from './sites/site/site.page';
 
 @NgModule({
-  declarations: [CompanyPage, SitePage, RolePage, DepartmentPage, RegionPage],
+  declarations: [
+    CompanyPage,
+    SitesPage,
+    EditSitePage,
+    SiteActionCellRendererComponent,
+    DepartmentsPage,
+    EditDepartmentPage,
+    DepartmentActionCellRendererComponent,
+    RegionsPage,
+    EditRegionPage,
+    RegionActionCellRendererComponent,
+    RolesPage,
+    EditRolePage,
+    RoleActionCellRendererComponent,
+  ],
   imports: [
     RouterModule,
     CommonModule,
@@ -23,6 +47,7 @@ import { CompanyPage } from './company.page';
     NgxChartsModule,
     IonicModule,
     UiModule,
+    AgGridModule,
   ],
 })
 export class CompanyModule {}

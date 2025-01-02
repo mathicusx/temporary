@@ -9,16 +9,29 @@ import { RouterModule } from '@angular/router';
 import { AdminPage } from './admin.page';
 import { DashboardPage } from './dashboard/dashboard.page';
 import { FormatsPage } from './formats/formats.page';
-import { AdminCompanyPage } from './company/admin-company.page';
 import { NiRatesPage } from './ni-rates/ni-rates.page';
+import { NiRateActionCellRendererComponent } from './ni-rates/niRateActionCellRenderComponent';
+import { EditNiRatePage } from './ni-rates/ni-rate/ni-rate.page';
+import { AgGridModule } from 'ag-grid-angular';
+import { EditFormatPage } from './formats/format/format.page';
+import { FormatActionCellRendererComponent } from './formats/formatActionCellRenderComponent';
+import { AdminCompaniesPage } from './companys/admin-companies.page';
+import { EditAdminCompanyPage } from './companys/admin-company/admin-company.page';
+import { AdminCompanyActionCellRendererComponent } from './companys/adminCompaniesActionCellRenderComponent';
 
 @NgModule({
   declarations: [
     AdminPage,
     DashboardPage,
     FormatsPage,
-    AdminCompanyPage,
+    EditFormatPage,
+    FormatActionCellRendererComponent,
+    AdminCompaniesPage,
+    EditAdminCompanyPage,
+    AdminCompanyActionCellRendererComponent,
     NiRatesPage,
+    NiRateActionCellRendererComponent,
+    EditNiRatePage,
   ],
   imports: [
     RouterModule,
@@ -29,6 +42,7 @@ import { NiRatesPage } from './ni-rates/ni-rates.page';
     NgxChartsModule,
     IonicModule,
     UiModule,
+    AgGridModule,
   ],
 })
 export class AdminModule {}

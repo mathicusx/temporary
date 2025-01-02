@@ -1,14 +1,19 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>mobile-view</ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- <div class="p-4">
+  <span>User list works!</span>
+</div> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mobile-view</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content> -->
-<span>edit works!</span>
+<div class="table-container p-4 h-full">
+  <div class="flex justify-end">
+    <ion-button color="secondary" (click)="editNiRate()"
+      >Create New Ni Rate</ion-button
+    >
+  </div>
+  <ag-grid-angular
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [rowData]="niRates$ | async"
+    [pagination]="true"
+    style="width: 100%; height: 100%"
+  >
+  </ag-grid-angular>
+</div>

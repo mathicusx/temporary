@@ -9,9 +9,16 @@ import { RouterModule } from '@angular/router';
 import { HumanResourcesPage } from './human-resources.page';
 import { EditUserPage } from './user-list/user/edit-user.page';
 import { UserListPage } from './user-list/user-list.page';
+import { AgGridModule } from 'ag-grid-angular';
+import { ActionCellRendererComponent } from './user-list/actionCellRenderComponent';
 
 @NgModule({
-  declarations: [EditUserPage, UserListPage, HumanResourcesPage],
+  declarations: [
+    EditUserPage,
+    UserListPage,
+    ActionCellRendererComponent,
+    HumanResourcesPage,
+  ],
   imports: [
     RouterModule,
     CommonModule,
@@ -20,6 +27,7 @@ import { UserListPage } from './user-list/user-list.page';
     HumanResourcesRoutingModule,
     NgxChartsModule,
     IonicModule,
+    AgGridModule,
     UiModule,
   ],
 })

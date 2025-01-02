@@ -4,14 +4,18 @@ import { AdminPage } from './admin.page';
 import { DashboardPage } from './dashboard/dashboard.page';
 import { FormatsPage } from './formats/formats.page';
 import { NiRatesPage } from './ni-rates/ni-rates.page';
-import { AdminCompanyPage } from './company/admin-company.page';
-
+import { AdminCompaniesPage } from './companys/admin-companies.page';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminPage,
     children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
       {
         path: 'dashboard',
         component: DashboardPage,
@@ -22,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'company',
-        component: AdminCompanyPage,
+        component: AdminCompaniesPage,
       },
       {
         path: 'ni-rates',
