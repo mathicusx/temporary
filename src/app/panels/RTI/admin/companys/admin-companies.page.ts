@@ -4,9 +4,6 @@ import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { ModuleRegistry, AllCommunityModule, ColDef } from 'ag-grid-community';
 import { Observable, combineLatest, map } from 'rxjs';
-import { loadFormats } from 'src/app/store/rti/admin/formats/formats.actions';
-
-import { FormatActionCellRendererComponent } from '../formats/formatActionCellRenderComponent';
 import { Company } from 'src/app/models/admin/admin-company.model';
 import {
   selectCompanies,

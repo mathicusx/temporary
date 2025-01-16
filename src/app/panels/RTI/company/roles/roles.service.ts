@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Role } from 'src/app/models/company/role.model';
+import { Role, RoleResponse, SaveRole } from 'src/app/models/company/role.model';
+import { cleanPayload } from 'src/app/_helpers/clean-payload';
 
 @Injectable({
   providedIn: 'root',
@@ -12,25 +13,25 @@ export class RolesService {
 
   constructor(private http: HttpClient) {}
 
-  getRoles(): Observable<Role[]> {
-    // console.log(this.apiUrl);
-    // return this.http.get<Role[]>(`${this.apiUrl}/Admin/import/Roles`);
-    const mockRoles: Role[] = [
-      {
-        id: 1,
-        name: 'Role 1',
-      },
-      {
-        id: 2,
-        name: 'Role 2',
-      },
-      {
-        id: 3,
-        name: 'Role 2',
-      },
-    ];
+  getRoles(): Observable<RoleResponse> {
+    return this.http.post<RoleResponse>(
+      `${this.apiUrl}/Company/Roles`,
+      {}
+    );
+  }
 
-    // Simulating an HTTP request by returning an observable with mock data
-    return of(mockRoles);
+  saveRole(role: SaveRole): Observable<SaveRole> {
+    const cleanedPayload = cleanPayload(role);
+    if (cleanedPayload.id) {
+      return this.http.put<SaveRole>(
+        `${this.apiUrl}/Company/Role/${cleanedPayload.id}`,
+        cleanedPayload
+      );
+    } else {
+      return this.http.post<SaveRole>(
+        `${this.apiUrl}/Company/Role/`,
+        cleanedPayload
+      );
+    }
   }
 }

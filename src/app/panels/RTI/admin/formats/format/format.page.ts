@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
-import { Format } from 'src/app/models/admin/formats.model';
+import { Store } from '@ngrx/store';
+import { ImportFormat } from 'src/app/models/admin/formats.model';
 import { NiRate } from 'src/app/models/admin/niRates.model';
+import { AppState } from 'src/app/store/app/app.state';
+import { saveFormat } from 'src/app/store/rti/admin/formats/formats.actions';
 
 interface FormatForm {
   id: FormControl<number>;
@@ -18,11 +21,12 @@ interface FormatForm {
 export class EditFormatPage implements OnInit {
   editFormatForm: FormGroup;
 
-  format: Format;
+  format: ImportFormat;
 
   constructor(
     private navParams: NavParams,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private store: Store<AppState>
   ) {
     this.format = this.navParams.get('format');
     console.log(this.format);
@@ -34,6 +38,11 @@ export class EditFormatPage implements OnInit {
 
   onEdit() {
     console.log(this.editFormatForm.value);
+    const format = this.editFormatForm.value;
+    
+    
+
+    this.store.dispatch(saveFormat({ format: format }));
   }
 
   onClose() {
@@ -42,7 +51,7 @@ export class EditFormatPage implements OnInit {
 
   private initForm() {
     this.editFormatForm = new FormGroup<FormatForm>({
-      id: new FormControl(this.format?.id || 0, [Validators.required]),
+      id: new FormControl(this.format?.id ?? null),
       name: new FormControl(this.format?.name || '', [Validators.required]),
       formatDetails: new FormControl(this.format?.formatDetails || '', [
         Validators.required,

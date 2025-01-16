@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Region } from 'src/app/models/company/region.model';
+import { Region, RegionResponse, SaveRegion } from 'src/app/models/company/region.model';
+import { cleanPayload } from 'src/app/_helpers/clean-payload';
 
 @Injectable({
   providedIn: 'root',
@@ -12,28 +13,25 @@ export class RegionsService {
 
   constructor(private http: HttpClient) {}
 
-  getRegions(): Observable<Region[]> {
-    // console.log(this.apiUrl);
-    // return this.http.get<Region[]>(`${this.apiUrl}/Admin/import/Regions`);
-    const mockRegions: Region[] = [
-      {
-        id: 1,
-        name: 'Format 1',
-        inactive: true,
-      },
-      {
-        id: 2,
-        name: 'Format 2',
-        inactive: false,
-      },
-      {
-        id: 3,
-        name: 'Format 2',
-        inactive: true,
-      },
-    ];
+  getRegions(): Observable<RegionResponse> {
+    return this.http.post<RegionResponse>(
+      `${this.apiUrl}/Company/Regions`,
+      {}
+    );
+  }
 
-    // Simulating an HTTP request by returning an observable with mock data
-    return of(mockRegions);
+  saveRegion(region: SaveRegion): Observable<SaveRegion> {
+    const cleanedPayload = cleanPayload(region);
+    if (cleanedPayload.id) {
+      return this.http.put<SaveRegion>(
+        `${this.apiUrl}/Company/Region/${cleanedPayload.id}`,
+        cleanedPayload
+      );
+    } else {
+      return this.http.post<SaveRegion>(
+        `${this.apiUrl}/Company/Region/`,
+        cleanedPayload
+      );
+    }
   }
 }

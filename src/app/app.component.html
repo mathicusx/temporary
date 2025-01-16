@@ -1,3 +1,6 @@
 <ion-app>
+  <div *ngIf="globalLoader" class="global-loader" @fade>
+    <span class="loader"></span>
+  </div>
   <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

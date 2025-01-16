@@ -9,6 +9,7 @@ import { DepartmentsReducer } from '../rti/company/departments/departments.reduc
 import { SitesReducer } from '../rti/company/sites/sites.reducer';
 import { RolesReducer } from '../rti/company/roles/roles.reducer';
 import { RegionsReducer } from '../rti/company/regions/regions.reducer';
+import { globalVariablesReducers } from './global-variables/global-variables.reducer';
 
 export const appReducer: ActionReducerMap<AppState> = {
   users: UsersReducer,
@@ -20,4 +21,5 @@ export const appReducer: ActionReducerMap<AppState> = {
   sites: SitesReducer,
   roles: RolesReducer,
   regions: RegionsReducer,
+  globalVariables: globalVariablesReducers,
 };

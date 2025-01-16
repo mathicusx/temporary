@@ -1,16 +1,27 @@
 import { createReducer, on } from '@ngrx/store';
-import { Format } from 'src/app/models/admin/formats.model';
-import { loadFormats, loadFormatsFailure, loadFormatsSuccess } from './formats.actions';
+import { ImportFormat, SaveFormat } from 'src/app/models/admin/formats.model';
+import {
+  loadFormats,
+  loadFormatsFailure,
+  loadFormatsSuccess,
+  saveFormat,
+  saveFormatFailure,
+  saveFormatSuccess,
+} from './formats.actions';
 
 export interface FormatState {
-  formats: Format[];
+  formats: ImportFormat[];
+  format: SaveFormat;
   loadingFormats: boolean;
+  loadingFormat: boolean;
   error: string | null;
 }
 
 export const initialFormatState: FormatState = {
   formats: [],
+  format: null,
   loadingFormats: false,
+  loadingFormat: false,
   error: null,
 };
 
@@ -29,5 +40,19 @@ export const FormatsReducer = createReducer(
     ...state,
     error,
     loadingFormats: false,
+  })),
+  on(saveFormat, (state) => ({
+    ...state,
+    loadingFormat: true,
+  })),
+  on(saveFormatSuccess, (state, { format }) => ({
+    ...state,
+    format,
+    loadingFormat: false,
+  })),
+  on(saveFormatFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loadingFormat: false,
   }))
 );

@@ -10,7 +10,7 @@
   <form [formGroup]="editNiRateForm" class="edit-form" (ngSubmit)="onEdit()">
     <div class="actions">
       <ion-item class="w-full min-w-[150px]" #startDateTrigger>
-        <ion-input placeholder="Date" #startDateInput></ion-input>
+        <ion-input placeholder="Date" #startDateInput formControlName="date_from"></ion-input>
         <ion-icon class="cursor-pointer" name="calendar" slot="end"></ion-icon>
       </ion-item>
       <app-ui-datetime-popover
@@ -24,72 +24,72 @@
 
     <ion-input
       class="form-input"
-      formControlName="employerRate"
+      formControlName="employer_rate"
       placeholder="Employer Rate"
     >
     </ion-input>
     <div
       class="error-wrapper"
-      *ngIf="editNiRateForm.get('employerRate')?.touched && editNiRateForm.get('employerRate')?.invalid"
+      *ngIf="editNiRateForm.get('employer_rate')?.touched && editNiRateForm.get('employer_rate')?.invalid"
     >
-      <p *ngIf="editNiRateForm.get('employerRate')?.hasError('required')">
+      <p *ngIf="editNiRateForm.get('employer_rate')?.hasError('required')">
         Employer rate is required.
       </p>
     </div>
     <ion-input
       class="form-input"
-      formControlName="niFreeAmount"
+      formControlName="ni_free_amount"
       placeholder="Ni Free Amount"
     >
     </ion-input>
     <div
       class="error-wrapper"
-      *ngIf="editNiRateForm.get('niFreeAmount')?.touched && editNiRateForm.get('niFreeAmount')?.invalid"
+      *ngIf="editNiRateForm.get('ni_free_amount')?.touched && editNiRateForm.get('ni_free_amount')?.invalid"
     >
-      <p *ngIf="editNiRateForm.get('niFreeAmount')?.hasError('required')">
+      <p *ngIf="editNiRateForm.get('ni_free_amount')?.hasError('required')">
         Ni Free Amount is required.
       </p>
     </div>
     <ion-input
       class="form-input"
-      formControlName="niFreeAmountU21"
+      formControlName="ni_free_amount_u21"
       placeholder="NI Free Amount U21"
     >
     </ion-input>
     <div
       class="error-wrapper"
-      *ngIf="editNiRateForm.get('niFreeAmountU21')?.touched && editNiRateForm.get('niFreeAmount')?.invalid"
+      *ngIf="editNiRateForm.get('ni_free_amount_u21')?.touched && editNiRateForm.get('niFreeAmount')?.invalid"
     >
-      <p *ngIf="editNiRateForm.get('niFreeAmountU21')?.hasError('required')">
+      <p *ngIf="editNiRateForm.get('ni_free_amount_u21')?.hasError('required')">
         Ni Free Amount U21 is required.
       </p>
     </div>
     <ion-input
       class="form-input"
-      formControlName="apprenticeLevy"
+      formControlName="apprentice_levy"
       placeholder="Apprentice Levy"
     >
     </ion-input>
     <div
       class="error-wrapper"
-      *ngIf="editNiRateForm.get('apprenticeLevy')?.touched && editNiRateForm.get('apprenticeLevy')?.invalid"
+      *ngIf="editNiRateForm.get('apprentice_levy')?.touched && editNiRateForm.get('apprentice_levy')?.invalid"
     >
-      <p *ngIf="editNiRateForm.get('apprenticeLevy')?.hasError('required')">
+      <p *ngIf="editNiRateForm.get('apprentice_levy')?.hasError('required')">
         Apprentice Levy is required.
       </p>
     </div>
     <ion-input
       class="form-input"
-      formControlName="pensionContributionRate"
+      formControlName="pension_contribution_rate"
       placeholder="Pension Contribution Rate"
     >
     </ion-input>
     <div
       class="error-wrapper"
-      *ngIf="editNiRateForm.get('pensionContributionRate')?.touched && editNiRateForm.get('pensionContributionRate')?.invalid"
+      *ngIf="editNiRateForm.get('pension_contribution_rate')?.touched && editNiRateForm.get('pension_contribution_rate')?.invalid"
     >
       <p
-        *ngIf="editNiRateForm.get('pensionContributionRate')?.hasError('required')"
+        *ngIf="editNiRateForm.get('pension_contribution_rate')?.hasError('required')"
       >
         Pension Contribution Rate is required.
       </p>

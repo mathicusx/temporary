@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Company } from 'src/app/models/admin/admin-company.model';
+import { Company, SaveCompany } from 'src/app/models/admin/admin-company.model';
 
 const COMPANIES = 'COMPANIES';
 
@@ -10,5 +10,18 @@ export const loadCompaniesSuccess = createAction(
 );
 export const loadCompaniesFailure = createAction(
   `[Service ${COMPANIES}] Get Companies Failed`,
+  props<{ error: string }>()
+);
+
+export const saveCompany = createAction(
+  `[Page ${COMPANIES}] Save Company`,
+  props<{ company: SaveCompany }>()
+);
+export const saveCompanySuccess = createAction(
+  `[Page ${COMPANIES}] Save Company Success`,
+  props<{ company: SaveCompany }>()
+);
+export const saveCompanyFailure = createAction(
+  `[Page ${COMPANIES}] Save Company Failure`,
   props<{ error: string }>()
 );

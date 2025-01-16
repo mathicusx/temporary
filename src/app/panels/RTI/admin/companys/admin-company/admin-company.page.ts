@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { Company } from 'src/app/models/admin/admin-company.model';
+import { AppState } from 'src/app/store/app/app.state';
+import { saveCompany } from 'src/app/store/rti/admin/company/admin-companies.actions';
 
 interface CompanyForm {
   id: FormControl<number>;
@@ -20,7 +23,8 @@ export class EditAdminCompanyPage implements OnInit {
 
   constructor(
     private navParams: NavParams,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private store: Store<AppState>
   ) {
     this.company = this.navParams.get('company');
     console.log(this.company);
@@ -32,6 +36,9 @@ export class EditAdminCompanyPage implements OnInit {
 
   onEdit() {
     console.log(this.editCompanyForm.value);
+    const company = this.editCompanyForm.value;
+
+    this.store.dispatch(saveCompany({ company: company }));
   }
 
   onClose() {
@@ -40,7 +47,7 @@ export class EditAdminCompanyPage implements OnInit {
 
   private initForm() {
     this.editCompanyForm = new FormGroup<CompanyForm>({
-      id: new FormControl(this.company?.id || 0, [Validators.required]),
+      id: new FormControl(this.company?.id ?? null),
       name: new FormControl(this.company?.name || '', [Validators.required]),
     });
   }

@@ -2,13 +2,22 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { login, loginSuccess, loginFailure } from './auth.actions';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app/app.state';
+import { setGlobalLoader } from '../app/global-variables/global-variables.actions';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+    private store: Store<AppState>
+  ) {}
 
   login$ = createEffect(() =>
     this.actions$.pipe(
@@ -20,5 +29,17 @@ export class AuthEffects {
         )
       )
     )
+  );
+
+  redirectAfterLogin$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(loginSuccess),
+        tap(() => {
+          this.store.dispatch(setGlobalLoader({ active: false }));
+          this.router.navigate(['panels/rti/admin/dashboard']);
+        })
+      ),
+    { dispatch: false }
   );
 }

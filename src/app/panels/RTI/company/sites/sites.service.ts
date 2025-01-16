@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Format } from 'src/app/models/admin/formats.model';
 import { Site } from 'src/app/models/company/site.model';
 
 @Injectable({

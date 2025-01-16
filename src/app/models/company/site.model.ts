@@ -12,3 +12,12 @@ export interface Site {
   } | null;
   roles?: any[]; // Adjust the type of roles if a specific type is expected, such as Role[]
 }
+
+export interface SiteResponse {
+  status: string;
+  Sites: Site[];
+}
+export interface SaveSite {
+  id?: number;
+  name: string;
+}

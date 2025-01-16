@@ -21,24 +21,18 @@ export class AuthService {
       })
       .pipe(
         tap((response) => {
-          this.setToken(response.token); // Store token if login is successful
+          this.setToken(response.token);
         }),
         catchError((error) => {
-          // Handle error here, log it or show a message to the user
           console.error('Login failed:', error);
 
-          // You can return a custom error message or rethrow the error
-          localStorage.setItem('authToken', '4dc64c3cff3face951cb09c1fc62fa0d408b1239d8b227eb05c2dc22165f1fd6')
           return throwError(() => new Error('Login failed. Please try again.'));
         })
       );
   }
 
   setToken(token: string): void {
-    localStorage.setItem(
-      this.tokenKey,
-      '4dc64c3cff3face951cb09c1fc62fa0d408b1239d8b227eb05c2dc22165f1fd6'
-    );
+    localStorage.setItem(this.tokenKey, token);
   }
 
   getToken(): string | null {

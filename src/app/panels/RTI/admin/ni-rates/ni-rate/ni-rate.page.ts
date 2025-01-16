@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { NiRate } from 'src/app/models/admin/niRates.model';
+import { AppState } from 'src/app/store/app/app.state';
+import { saveNiRate } from 'src/app/store/rti/admin/niRates/niRates.actions';
 
 interface NiRateForm {
   id: FormControl<number>;
-  dateFrom: FormControl<string>;
-  dateTo: FormControl<string | null>;
-  employerRate: FormControl<number>;
-  niFreeAmount: FormControl<number>;
-  niFreeAmountU21: FormControl<number>;
-  apprenticeLevy: FormControl<number>;
-  pensionContributionRate: FormControl<number>;
+  date_from: FormControl<string>;
+  date_to: FormControl<string | null>;
+  employer_rate: FormControl<number>;
+  ni_free_amount: FormControl<number>;
+  ni_free_amount_u21: FormControl<number>;
+  apprentice_levy: FormControl<number>;
+  pension_contribution_rate: FormControl<number>;
 }
 
 @Component({
@@ -26,7 +29,8 @@ export class EditNiRatePage implements OnInit {
 
   constructor(
     private navParams: NavParams,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private store: Store<AppState>
   ) {
     this.niRate = this.navParams.get('niRate');
     console.log(this.niRate);
@@ -38,6 +42,9 @@ export class EditNiRatePage implements OnInit {
 
   onEdit() {
     console.log(this.editNiRateForm.value);
+    const payload = this.editNiRateForm.value;
+
+    this.store.dispatch(saveNiRate({ niRate: payload }));
   }
 
   onClose() {
@@ -46,25 +53,25 @@ export class EditNiRatePage implements OnInit {
 
   private initForm() {
     this.editNiRateForm = new FormGroup<NiRateForm>({
-      id: new FormControl(this.niRate?.id || 0, [Validators.required]),
-      dateFrom: new FormControl(this.niRate?.dateFrom || '', [
+      id: new FormControl(this.niRate?.id ?? null),
+      date_from: new FormControl(this.niRate?.dateFrom || '', [
         Validators.required,
       ]),
-      dateTo: new FormControl(this.niRate?.dateTo || null),
-      employerRate: new FormControl(this.niRate?.employerRate || 0, [
+      date_to: new FormControl(this.niRate?.dateTo || null),
+      employer_rate: new FormControl(this.niRate?.employerRate, [
         Validators.required,
       ]),
-      niFreeAmount: new FormControl(this.niRate?.niFreeAmount || 0, [
+      ni_free_amount: new FormControl(this.niRate?.niFreeAmount, [
         Validators.required,
       ]),
-      niFreeAmountU21: new FormControl(this.niRate?.niFreeAmountU21 || 0, [
+      ni_free_amount_u21: new FormControl(this.niRate?.niFreeAmountU21, [
         Validators.required,
       ]),
-      apprenticeLevy: new FormControl(this.niRate?.apprenticeLevy || 0, [
+      apprentice_levy: new FormControl(this.niRate?.apprenticeLevy, [
         Validators.required,
       ]),
-      pensionContributionRate: new FormControl(
-        this.niRate?.pensionContributionRate || 0,
+      pension_contribution_rate: new FormControl(
+        this.niRate?.pensionContributionRate,
         [Validators.required, Validators.min(0)]
       ),
     });

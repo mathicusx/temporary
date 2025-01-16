@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { Role } from 'src/app/models/company/role.model';
+import { AppState } from 'src/app/store/app/app.state';
+import { saveRole } from 'src/app/store/rti/company/roles/roles.actions';
 
 interface RoleForm {
   id: FormControl<number>;
   name: FormControl<string>;
-  company: FormControl<number>;
+  // company: FormControl<number>;
 }
 
 @Component({
@@ -21,7 +24,8 @@ export class EditRolePage implements OnInit {
 
   constructor(
     private navParams: NavParams,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private store: Store<AppState>
   ) {
     this.role = this.navParams.get('role');
     console.log(this.role);
@@ -32,7 +36,9 @@ export class EditRolePage implements OnInit {
   }
 
   onEdit() {
-    console.log(this.editRoleForm.value);
+    const role = this.editRoleForm.value;
+
+    this.store.dispatch(saveRole({ role: role }));
   }
 
   onClose() {
@@ -41,9 +47,9 @@ export class EditRolePage implements OnInit {
 
   private initForm() {
     this.editRoleForm = new FormGroup<RoleForm>({
-      id: new FormControl(this.role?.id || 0, [Validators.required]),
+      id: new FormControl(this.role?.id ?? null),
       name: new FormControl(this.role?.name || '', [Validators.required]),
-      company: new FormControl(this.role?.company || 0, [Validators.required]),
+      // company: new FormControl(this.role?.company || 0, [Validators.required]),
     });
   }
 }

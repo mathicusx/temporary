@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Format } from 'src/app/models/admin/formats.model';
+import {
+  ImportFormat,
+  ImportFormatsResponse,
+  SaveFormat,
+} from 'src/app/models/admin/formats.model';
+import { cleanPayload } from 'src/app/_helpers/clean-payload';
 
 @Injectable({
   providedIn: 'root',
@@ -12,28 +17,24 @@ export class FormatsService {
 
   constructor(private http: HttpClient) {}
 
-  getFormats(): Observable<Format[]> {
-    // console.log(this.apiUrl);
-    // return this.http.get<Format[]>(`${this.apiUrl}/Admin/import/formats`);
-    const mockFormats: Format[] = [
-      {
-        id: 1,
-        name: 'Format 1',
-        formatDetails: 'Detail 1',
-      },
-      {
-        id: 2,
-        name: 'Format 2',
-        formatDetails: 'Detail 2',
-      },
-      {
-        id: 3,
-        name: 'Format 2',
-        formatDetails: 'Detail 2',
-      },
-    ];
+  getFormats(): Observable<ImportFormatsResponse> {
+    return this.http.get<ImportFormatsResponse>(
+      `${this.apiUrl}/Admin/ImportFormats`
+    );
+  }
 
-    // Simulating an HTTP request by returning an observable with mock data
-    return of(mockFormats);
+  saveFormat(format: SaveFormat): Observable<SaveFormat> {
+    const cleanedPayload = cleanPayload(format);
+    if (cleanedPayload.id) {
+      return this.http.put<SaveFormat>(
+        `${this.apiUrl}/Admin/ImportFormat/${cleanedPayload.id}`,
+        cleanedPayload
+      );
+    } else {
+      return this.http.post<SaveFormat>(
+        `${this.apiUrl}/Admin/ImportFormat/`,
+        cleanedPayload
+      );
+    }
   }
 }

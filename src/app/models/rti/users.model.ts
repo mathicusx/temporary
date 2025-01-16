@@ -12,5 +12,14 @@ export interface User {
 }
 
 export interface UsersResponse {
+  status: string;
   Users: User[];
+}
+
+export interface SaveUser {
+  id?: number;
+  name: string;
+  email: string;
+  company: number;
+  roles: string[];
 }

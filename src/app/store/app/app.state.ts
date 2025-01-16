@@ -7,6 +7,7 @@ import { RegionState } from '../rti/company/regions/regions.reducer';
 import { RoleState } from '../rti/company/roles/roles.reducer';
 import { SiteState } from '../rti/company/sites/sites.reducer';
 import { UsersState } from '../rti/hr/users/users.reducer';
+import { GlobalVariablesState } from './global-variables/global-variables.reducer';
 
 export interface AppState {
   users: UsersState;
@@ -18,4 +19,5 @@ export interface AppState {
   sites: SiteState;
   roles: RoleState;
   regions: RegionState;
+  globalVariables: GlobalVariablesState;
 }

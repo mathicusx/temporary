@@ -12,7 +12,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from './store/app/app.reducer';
 import { UserEffects } from './store/rti/hr/users/users.effects';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { AuthEffects } from './store/auth/auth.effects';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { NiRateEffects } from './store/rti/admin/niRates/niRates.effects';
@@ -45,6 +51,7 @@ import { SiteEffects } from './store/rti/company/sites/sites.effects';
     AuthModule,
   ],
   providers: [
+    provideHttpClient(withInterceptorsFromDi()),
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideHttpClient(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

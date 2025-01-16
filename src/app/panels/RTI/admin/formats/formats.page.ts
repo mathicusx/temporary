@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppState } from '@capacitor/app';
 import { ModalController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { ModuleRegistry, AllCommunityModule, ColDef } from 'ag-grid-community';
-import { Observable, combineLatest, map } from 'rxjs';
-import { Format } from 'src/app/models/admin/formats.model';
+import { Observable, Subject, combineLatest, map, takeUntil } from 'rxjs';
+import { ImportFormat } from 'src/app/models/admin/formats.model';
 import {
   selectFormats,
   selectFormatsError,
@@ -13,11 +13,12 @@ import {
 import { EditFormatPage } from './format/format.page';
 import { FormatActionCellRendererComponent } from './formatActionCellRenderComponent';
 import { loadFormats } from 'src/app/store/rti/admin/formats/formats.actions';
+import { AuthService } from 'src/app/auth/auth.service';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 interface ViewModel {
-  formats: Format[];
+  formats: ImportFormat[];
   loading: boolean;
 }
 
@@ -26,7 +27,7 @@ interface ViewModel {
   templateUrl: './formats.page.html',
   styleUrls: ['./formats.page.scss'],
 })
-export class FormatsPage implements OnInit {
+export class FormatsPage implements OnInit, OnDestroy {
   public readonly vm$: Observable<ViewModel>;
 
   columnDefs: ColDef[] = [
@@ -50,6 +51,9 @@ export class FormatsPage implements OnInit {
   formats$ = this.store.select(selectFormats); // Accessing feature state through selectors
   loading$ = this.store.select(selectLoadingFormats);
   error$ = this.store.select(selectFormatsError);
+
+  onDestroy = new Subject<boolean>();
+
   constructor(
     private store: Store<AppState>,
     private modalController: ModalController
@@ -62,13 +66,22 @@ export class FormatsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.formats$.subscribe((res) => console.log(res));
+    this.formats$
+      .pipe(takeUntil(this.onDestroy))
+      .subscribe((res) => console.log(res));
   }
 
   async editFormat() {
+    this.store.dispatch(loadFormats());
+
     const modal = await this.modalController.create({
       component: EditFormatPage,
     });
     return await modal.present();
+  }
+
+  ngOnDestroy() {
+    this.onDestroy.next(true);
+    this.onDestroy.complete();
   }
 }

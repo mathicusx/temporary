@@ -37,12 +37,20 @@
         Email must be at least 3 characters long.
       </p>
     </div>
-    <ion-input
-      class="form-input"
-      formControlName="company"
-      placeholder="Company"
-    >
-    </ion-input>
+    <ion-item>
+      <ion-select
+        class="form-input"
+        formControlName="company"
+        placeholder="Select Company"
+      >
+        <ion-select-option
+          *ngFor="let company of companies$ | async"
+          [value]="company.id"
+        >
+          {{ company.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
     <div
       class="error-wrapper"
       *ngIf="editUserForm.get('company')?.touched && editUserForm.get('company')?.invalid"
@@ -54,8 +62,17 @@
         Company must be at least 3 characters long.
       </p>
     </div>
-    <ion-input class="form-input" formControlName="roles" placeholder="Roles">
-    </ion-input>
+    <ion-item>
+      <ion-select
+        class="form-input"
+        formControlName="roles"
+        placeholder="Select Role"
+      >
+        <ion-select-option *ngFor="let role of roleOptions" [value]="role.id">
+          {{ role.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
     <div
       class="error-wrapper"
       *ngIf="editUserForm.get('roles')?.touched && editUserForm.get('roles')?.invalid"

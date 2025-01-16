@@ -1,5 +1,13 @@
 export interface Role {
   id: number;
   name: string;
-  company?: number;
+}
+
+export interface RoleResponse {
+  status: string;
+  Roles: Role[];
+}
+export interface SaveRole {
+  id?: number;
+  name: string;
 }

@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Department } from 'src/app/models/company/department.model';
+import {
+  Department,
+  DepartmentResponse,
+  SaveDepartment,
+} from 'src/app/models/company/department.model';
+import { cleanPayload } from 'src/app/_helpers/clean-payload';
 
 @Injectable({
   providedIn: 'root',
@@ -12,25 +17,25 @@ export class DepartmentsService {
 
   constructor(private http: HttpClient) {}
 
-  getDepartments(): Observable<Department[]> {
-    // console.log(this.apiUrl);
-    // return this.http.get<Department[]>(`${this.apiUrl}/Comnpany/1/Departments`);
-    const mockDepartments: Department[] = [
-      {
-        id: 1,
-        name: 'Department 1',
-      },
-      {
-        id: 2,
-        name: 'Department 2',
-      },
-      {
-        id: 3,
-        name: 'Department 2',
-      },
-    ];
+  getDepartments(): Observable<DepartmentResponse> {
+    return this.http.post<DepartmentResponse>(
+      `${this.apiUrl}/Company/Departments`,
+      {}
+    );
+  }
 
-    // Simulating an HTTP request by returning an observable with mock data
-    return of(mockDepartments);
+  saveDepartment(department: SaveDepartment): Observable<SaveDepartment> {
+    const cleanedPayload = cleanPayload(department);
+    if (cleanedPayload.id) {
+      return this.http.put<SaveDepartment>(
+        `${this.apiUrl}/Company/Department/${cleanedPayload.id}`,
+        cleanedPayload
+      );
+    } else {
+      return this.http.post<SaveDepartment>(
+        `${this.apiUrl}/Company/Department/`,
+        cleanedPayload
+      );
+    }
   }
 }

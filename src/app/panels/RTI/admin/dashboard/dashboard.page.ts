@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Color, LegendPosition, ScaleType } from '@swimlane/ngx-charts';
 import { multi, single, multiLine, singleNumberChart } from './dashboard.data';
+import { AppState } from 'src/app/store/app/app.state';
+import { Store } from '@ngrx/store';
+import { setGlobalLoader } from 'src/app/store/app/global-variables/global-variables.actions';
+import { AlertService } from 'src/app/_services/alert.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -54,13 +59,22 @@ export class DashboardPage implements OnInit {
     group: ScaleType.Linear, // Optional: Group for the color scheme
   };
 
-  constructor() {
+  constructor(
+    private readonly store: Store<AppState>,
+    private readonly alertService: AlertService,
+    private authService: AuthService
+  ) {
+    this.store.dispatch(setGlobalLoader({ active: true }));
     Object.assign(this, { single });
     Object.assign(this, { multi });
     Object.assign(this, { multiLine });
     Object.assign(this, { singleNumberChart });
   }
   ngOnInit(): void {
+    const token = this.authService.getToken();
+
+    console.log(token);
+
     this.groupedCities = [
       {
         label: 'Area View',
@@ -103,5 +117,10 @@ export class DashboardPage implements OnInit {
         ],
       },
     ];
+
+    setTimeout(() => {
+      this.alertService.success('Dashboard page loaded');
+      this.store.dispatch(setGlobalLoader({ active: false }));
+    }, 4000);
   }
 }
