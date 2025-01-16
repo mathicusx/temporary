@@ -22,6 +22,38 @@
       </p>
     </div>
 
+    <div class="flex flex-col gap-4">
+      <ion-item>
+        <ion-select
+          class="form-input"
+          formControlName="region"
+          placeholder="Select Region"
+        >
+          <ion-select-option
+            *ngFor="let region of regions$ | async"
+            [value]="region.id"
+          >
+            {{ region.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select
+          class="form-input"
+          formControlName="roles"
+          placeholder="Select Role"
+          multiple
+        >
+          <ion-select-option
+            *ngFor="let role of roles$ | async"
+            [value]="role.id"
+          >
+            {{ role.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
     <div class="flex flex-col">
       <ion-button class="form-button" color="tertiary" (click)="onEdit()"
         >{{site ? 'Update Site' : 'Create Site'}}</ion-button

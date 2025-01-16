@@ -1,20 +1,38 @@
-<ion-tabs>
-  <ion-tab-bar slot="top">
-    <ion-tab-button tab="site">
-      <ion-icon name="person-circle-outline"></ion-icon>
-      Site
-    </ion-tab-button>
-    <ion-tab-button tab="department">
-      <ion-icon name="radio"></ion-icon>
-      Department
-    </ion-tab-button>
-    <ion-tab-button tab="region">
-      <ion-icon name="library"></ion-icon>
-      Region
-    </ion-tab-button>
-    <ion-tab-button tab="role">
-      <ion-icon name="search"></ion-icon>
-      Role
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+<div>
+  <ion-tabs *ngIf="company">
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="site">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        Site
+      </ion-tab-button>
+      <ion-tab-button tab="department">
+        <ion-icon name="radio"></ion-icon>
+        Department
+      </ion-tab-button>
+      <ion-tab-button tab="region">
+        <ion-icon name="library"></ion-icon>
+        Region
+      </ion-tab-button>
+      <ion-tab-button tab="role">
+        <ion-icon name="search"></ion-icon>
+        Role
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  <div class="company-container">
+    <ion-item>
+      <ion-select
+        class="form-input"
+        placeholder="Select Company"
+        [formControl]="companyControl"
+      >
+        <ion-select-option
+          *ngFor="let company of companies$ | async"
+          [value]="company.id"
+        >
+          {{ company.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+</div>

@@ -8,7 +8,12 @@ import { Department } from 'src/app/models/company/department.model';
 import { DepartmentActionCellRendererComponent } from './departmentActionCellRenderComponent';
 import { EditDepartmentPage } from './department/department.page';
 import { loadDepartments } from 'src/app/store/rti/company/departments/departments.actions';
-import { selectDepartments, selectLoadingDepartments, selectDepartmentsError } from 'src/app/store/rti/company/departments/departments.selectors';
+import {
+  selectDepartments,
+  selectLoadingDepartments,
+  selectDepartmentsError,
+} from 'src/app/store/rti/company/departments/departments.selectors';
+import { CompanyService } from '../company.service';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -24,6 +29,8 @@ interface ViewModel {
 })
 export class DepartmentsPage implements OnInit {
   public readonly vm$: Observable<ViewModel>;
+
+  companyId: number | null = null;
 
   columnDefs: ColDef[] = [
     { field: 'id', flex: 1, maxWidth: 70 },
@@ -41,7 +48,8 @@ export class DepartmentsPage implements OnInit {
   error$ = this.store.select(selectDepartmentsError);
   constructor(
     private store: Store<AppState>,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private companyService: CompanyService
   ) {
     this.store.dispatch(loadDepartments());
 
@@ -51,7 +59,10 @@ export class DepartmentsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.departments$.subscribe((res) => console.log(res));
+    this.companyService.company$.subscribe((companyId) => {
+      this.companyId = companyId;
+      console.log('Received company ID:', this.companyId);
+    });
   }
 
   async editDepartment() {

@@ -40,7 +40,6 @@ export class EditUserPage implements OnInit {
     this.store.dispatch(loadCompanies());
     this.user = this.navParams.get('user');
     console.log(this.user);
-    this.store;
   }
 
   ngOnInit() {

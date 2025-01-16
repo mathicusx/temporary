@@ -1,3 +1,5 @@
+import { Role } from './role.model';
+
 export interface Site {
   id: number;
   company?: {
@@ -10,7 +12,7 @@ export interface Site {
     id: number;
     name: string;
   } | null;
-  roles?: any[]; // Adjust the type of roles if a specific type is expected, such as Role[]
+  roles?: Role[]; // Adjust the type of roles if a specific type is expected, such as Role[]
 }
 
 export interface SiteResponse {
@@ -20,4 +22,6 @@ export interface SiteResponse {
 export interface SaveSite {
   id?: number;
   name: string;
+  region?: number;
+  roles?: number[];
 }

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IonButton, IonicModule } from '@ionic/angular';
+import { IonButton, IonicModule, ModalController } from '@ionic/angular';
 import {
   Color,
   LegendPosition,
   NgxChartsModule,
   ScaleType,
 } from '@swimlane/ngx-charts';
+import { LoginDesktopPage } from '../auth/login-desktop/login-desktop.page';
 
 export var single = [
   {
@@ -61,7 +62,7 @@ export class LandingPage {
     group: ScaleType.Linear, // Optional: Group for the color scheme
   };
 
-  constructor() {
+  constructor(private modalController: ModalController) {
     Object.assign(this, { single });
   }
 
@@ -75,5 +76,12 @@ export class LandingPage {
 
   onDeactivate(data: any): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+  async login() {
+    const modal = await this.modalController.create({
+      component: LoginDesktopPage,
+    });
+    return await modal.present();
   }
 }

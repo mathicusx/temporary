@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app/app.state';
+import { loadCompanies } from 'src/app/store/rti/admin/company/admin-companies.actions';
+import { selectCompanies } from 'src/app/store/rti/admin/company/admin-companies.selectors';
+import { CompanyService } from './company.service';
 
 @Component({
   selector: 'app-company',
@@ -6,10 +12,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./company.page.scss'],
 })
 export class CompanyPage implements OnInit {
+  companyControl = new FormControl();
 
-  constructor() { }
+  companies$ = this.store.select(selectCompanies);
 
-  ngOnInit() {
+  company: number;
+
+  constructor(
+    private store: Store<AppState>,
+    private companyService: CompanyService
+  ) {
+    this.store.dispatch(loadCompanies());
   }
 
+  ngOnInit() {
+    this.companyControl.valueChanges.subscribe((value) => {
+      console.log('Selected company ID:', value);
+      this.company = value;
+      this.companyService.setCompany(value);
+    });
+  }
 }

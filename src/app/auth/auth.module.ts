@@ -5,9 +5,10 @@ import { AuthPage } from './auth.page';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginDesktopPage } from './login-desktop/login-desktop.page';
 
 @NgModule({
-  declarations: [AuthPage],
+  declarations: [AuthPage, LoginDesktopPage],
   imports: [CommonModule, RouterModule, IonicModule, ReactiveFormsModule],
 })
 export class AuthModule {}

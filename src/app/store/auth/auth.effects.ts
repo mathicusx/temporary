@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app/app.state';
 import { setGlobalLoader } from '../app/global-variables/global-variables.actions';
+import { ModalController } from '@ionic/angular';
 
 @Injectable()
 export class AuthEffects {
@@ -16,7 +17,8 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private modalController: ModalController
   ) {}
 
   login$ = createEffect(() =>
@@ -37,6 +39,7 @@ export class AuthEffects {
         ofType(loginSuccess),
         tap(() => {
           this.store.dispatch(setGlobalLoader({ active: false }));
+          this.modalController.dismiss();
           this.router.navigate(['panels/rti/admin/dashboard']);
         })
       ),
