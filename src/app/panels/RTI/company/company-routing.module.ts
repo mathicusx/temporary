@@ -5,6 +5,7 @@ import { RegionsPage } from './regions/regions.page';
 import { SitesPage } from './sites/sites.page';
 import { DepartmentsPage } from './departments/departments.page';
 import { RolesPage } from './roles/roles.page';
+import { ImportsPage } from './imports/imports.page';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'region',
         component: RegionsPage,
+      },
+      {
+        path: 'imports',
+        component: ImportsPage,
       },
       {
         path: 'site',

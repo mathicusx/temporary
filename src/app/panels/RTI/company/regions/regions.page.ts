@@ -7,8 +7,13 @@ import { Observable, combineLatest, map } from 'rxjs';
 import { Region } from 'src/app/models/company/region.model';
 import { EditRegionPage } from './region/region.page';
 import { RegionActionCellRendererComponent } from './regionActionCellRenderComponent';
-import { selectLoadingRegions, selectRegions, selectRegionsError } from 'src/app/store/rti/company/regions/regions.selectors';
+import {
+  selectLoadingRegions,
+  selectRegions,
+  selectRegionsError,
+} from 'src/app/store/rti/company/regions/regions.selectors';
 import { loadRegions } from 'src/app/store/rti/company/regions/regions.actions';
+import { CompanyService } from '../company.service';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -43,12 +48,15 @@ export class RegionsPage implements OnInit {
     },
   ];
 
+  companyId: number | null = null;
+
   regions$ = this.store.select(selectRegions); // Accessing feature state through selectors
   loading$ = this.store.select(selectLoadingRegions);
   error$ = this.store.select(selectRegionsError);
   constructor(
     private store: Store<AppState>,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private companyService: CompanyService
   ) {
     this.store.dispatch(loadRegions());
 
@@ -58,7 +66,10 @@ export class RegionsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.regions$.subscribe((res) => console.log(res));
+    this.companyService.company$.subscribe((companyId) => {
+      this.companyId = companyId;
+      console.log('Received company ID:', this.companyId);
+    });
   }
 
   async editRegion() {

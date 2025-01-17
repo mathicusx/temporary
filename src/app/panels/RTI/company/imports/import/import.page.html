@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>{{import ? 'Update Import' : 'Create Import'}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClose()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="p-4 h-full edit-import-container">
+  <form [formGroup]="editImportForm" class="edit-form" (ngSubmit)="onEdit()">
+    <ion-item>
+      <ion-select
+        class="form-input"
+        formControlName="site"
+        placeholder="Select Site"
+      >
+        <ion-select-option
+          *ngFor="let site of sites$ | async"
+          [value]="site.id"
+        >
+          {{ site.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        class="form-input"
+        formControlName="agency"
+        placeholder="Select Agency"
+      >
+        <ion-select-option
+          *ngFor="let agency of agencyOptions"
+          [value]="agency.id"
+        >
+          {{ agency.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-select
+        class="form-input"
+        formControlName="format"
+        placeholder="Select Format"
+      >
+        <ion-select-option
+          *ngFor="let format of formats$ | async"
+          [value]="format.id"
+        >
+          {{ format.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div class="actions" *ngIf="import">
+      <ion-item class="w-full min-w-[150px]" #startDateTrigger>
+        <ion-input
+          placeholder="Date"
+          #startDateInput
+          formControlName="weekEnding"
+        ></ion-input>
+        <ion-icon class="cursor-pointer" name="calendar" slot="end"></ion-icon>
+      </ion-item>
+      <app-ui-datetime-popover
+        enableRange
+        multiple
+        [datetimePopoverTriggerFor]="startDateTrigger"
+        [datetimeValueBind]="startDateInput"
+      >
+      </app-ui-datetime-popover>
+    </div>
+
+    <ion-input
+      class="form-input"
+      formControlName="notes"
+      placeholder="Notes"
+    ></ion-input>
+
+    <div class="flex flex-col">
+      <ion-button class="form-button" color="tertiary" (click)="onEdit()"
+        >{{import ? 'Update Import' : 'Create Import'}}</ion-button
+      >
+    </div>
+  </form>
+</div>

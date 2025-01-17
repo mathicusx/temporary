@@ -5,11 +5,11 @@ export interface ImportFormatsResponse {
 export interface ImportFormat {
   id: number;
   name: string;
-  formatDetails: string;
+  formatDetails?: string;
 }
 
 export interface SaveFormat {
   id?: number;
   name: string;
-  formatDetails: string;
+  formatDetails?: string;
 }

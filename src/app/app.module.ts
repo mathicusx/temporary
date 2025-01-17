@@ -28,6 +28,7 @@ import { DepartmentEffects } from './store/rti/company/departments/departments.e
 import { RegionEffects } from './store/rti/company/regions/regions.effects';
 import { RoleEffects } from './store/rti/company/roles/roles.effects';
 import { SiteEffects } from './store/rti/company/sites/sites.effects';
+import { ImportEffects } from './store/rti/company/imports/imports.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,6 +47,7 @@ import { SiteEffects } from './store/rti/company/sites/sites.effects';
       RegionEffects,
       RoleEffects,
       SiteEffects,
+      ImportEffects,
     ]),
     AppRoutingModule,
     AuthModule,

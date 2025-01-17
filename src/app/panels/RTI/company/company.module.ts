@@ -21,6 +21,9 @@ import { EditRolePage } from './roles/role/role.page';
 import { RoleActionCellRendererComponent } from './roles/roleActionCellRenderComponent';
 import { AgGridModule } from 'ag-grid-angular';
 import { EditSitePage } from './sites/site/site.page';
+import { ImportsPage } from './imports/imports.page';
+import { EditImportPage } from './imports/import/import.page';
+import { ImportsActionCellRendererComponent } from './imports/importsActionCellRenderComponent';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { EditSitePage } from './sites/site/site.page';
     RolesPage,
     EditRolePage,
     RoleActionCellRendererComponent,
+    ImportsPage,
+    EditImportPage,
+    ImportsActionCellRendererComponent,
   ],
   imports: [
     RouterModule,
