@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  height: 100%;
 
   .side-menu-header {
     display: flex;
@@ -42,42 +43,60 @@
 
     gap: 0.5rem;
     margin: 0;
+  }
 
-    .nav-item {
-      --background: #4ab69b;
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      font-size: 1.5rem;
+  .nav-item {
+    --background: #4ab69b;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 1.5rem;
 
-      color: white;
-      cursor: pointer;
+    color: white;
+    cursor: pointer;
 
-      width: 100%;
-      gap: 1rem;
+    width: 100%;
+    gap: 1rem;
 
-      &.active {
+    &.active {
+      color: #303e6f;
+      --background: rgba(250, 250, 250, 0.3);
+      .pi.pi-user {
         color: #303e6f;
-        --background: rgba(250, 250, 250, 0.3);
-        .pi.pi-user {
-          color: #303e6f;
-        }
-        a {
-          text-decoration: none;
-          color: #303e6f;
-        }
       }
-
-      &:hover {
-        background: rgba(250, 250, 250, 0.3);
+      a {
+        text-decoration: none;
         color: #303e6f;
-        .pi.pi-user {
-          color: #303e6f;
-        }
-        a {
-          text-decoration: none;
-          color: #303e6f;
-        }
+      }
+    }
+
+    &:hover {
+      background: rgba(250, 250, 250, 0.3);
+      color: #303e6f;
+      .pi.pi-user {
+        color: #303e6f;
+      }
+      a {
+        text-decoration: none;
+        color: #303e6f;
+      }
+    }
+    ion-label {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .logout-item {
+    margin-top: auto;
+    &:hover {
+      background: rgba(250, 250, 250, 0.3);
+      color: #303e6f;
+      .pi.pi-user {
+        color: #303e6f;
+      }
+      a {
+        text-decoration: none;
+        color: #303e6f;
       }
     }
   }

@@ -46,5 +46,16 @@
         <ion-label color="light">Admin</ion-label>
       </ion-item>
     </ion-list>
+    <div class="logout-item">
+      <ion-item
+        class="nav-item"
+        (click)="onLogout()"
+        [routerLink]="['/landing']"
+        routerLinkActive="active"
+      >
+        <ion-icon name="log-out"></ion-icon>
+        <ion-label color="light">Log Out</ion-label>
+      </ion-item>
+    </div>
   </div>
 </ion-content>

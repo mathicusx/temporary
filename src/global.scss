@@ -61,3 +61,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #5675a7;
 }
+
+ion-tab-button {
+  border-right: 1px solid #ededed;
+  border-left: 1px solid #ededed;
+  &:hover {
+    background: rgba(240, 240, 240, 0.3);
+  }
+}

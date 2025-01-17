@@ -10,6 +10,11 @@ const routes: Routes = [
     component: HumanResourcesPage,
     children: [
       {
+        path: '',
+        redirectTo: 'users',
+        pathMatch: 'full',
+      },
+      {
         path: 'user/:id',
         component: EditUserPage,
       },
